@@ -32,4 +32,33 @@ class LawyerController < ApplicationController
   end
 
 
+  post "/save" do
+
+    @lawyer_id = params[:law].to_i
+    redirect "/relate?selected_lawyer_id=#{@lawyer_id}"
+
+
+    # lawyer = Lawyer.find_by(@lawyer_id)
+    #   @selected = params[:lawyer_selected]
+    #
+    #   "e"
+  end
+
+    get "/relate" do
+      "selected lawyer id"
+      @selected = params[:selected_lawyer_id].to_i
+      @find = Lawyer.find_by(id: @selected)
+      @user = User.find_by_id(session[:user_id])
+
+    if   @user.lawyers << @find
+      "saved "
+    else
+      "not"
+    end
+
+      # "se #{@find.name}, id #{@find.id}:::user #{@user.lawyers.map {|a| a.name}} f "
+    end
+
+
+
 end

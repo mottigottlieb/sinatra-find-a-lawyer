@@ -7,5 +7,9 @@
 	<%= "Not Logged in" %>
  <%end%>
 
-
+<h4>My lawyers</h4>
+	<%@user.lawyers.all.each do |a|%>
+	<%=	"#{a.name}, #{a.number}" %> <br />
+		<%end%>
 <h3><a href="lawyer_search">Search for a lawyer</a> </h3>
+jgmh

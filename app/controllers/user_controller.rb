@@ -10,6 +10,7 @@ end
 
 
 get "/:username/dashboard" do
+  @user = User.find_by_id(session[:user_id])
    if logged_in?
      erb :"users/dashboard"
    else

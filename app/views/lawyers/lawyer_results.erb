@@ -82,7 +82,7 @@ amount <%=@amt%>
                 <%= a[:name] %>
                 <br />
     <form method="post" action="/save">
-      <input type="checkbox" name="law"  value="<%=a[:id]%>">
+      <input type="hidden" name="law"  value="<%=a[:id]%>">
         <input type="submit" value="Save this lawyer" />
 
       </form>
