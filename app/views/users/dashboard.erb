@@ -7,9 +7,122 @@
 	<%= "Not Logged in" %>
  <%end%>
 
-<h4>My lawyers</h4>
-	<%@user.lawyers.all.each do |a|%>
-	<%=	"#{a.name}, #{a.number}" %> <br />
-		<%end%>
+
 <h3><a href="lawyer_search">Search for a lawyer</a> </h3>
-jgmh
+
+
+<div class="container">
+
+        <div class="row">
+            <div class="col-lg-10  col-lg-push-1 red">
+            <div class="col-lg-4 jumbotron">
+
+                    <form method="post" action="/lawyer_search">
+                  <fieldset class="form-group">
+                    <label for="legal">Legal Issue:</label>
+                    <input type="text" class="form-control" id="legal" name="legal" placeholder="eg: Bankruptcy">
+                  </fieldset>
+                   <fieldset class="form-group">
+                    <label for="location">Location:</label>
+                    <input type="text" class="form-control" id="location" name="location" placeholder="Zip Code, State, City">
+                  </fieldset>
+                    <button type="submit" class="btn btn-default">Find <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+        </form>
+
+            </div>
+           <div class="col-lg-6 col-lg-push-1 my-lawyers jumbotron ">
+
+    <table class="table table-hover">
+
+
+      <thead>
+
+        <tr>
+          <th>ID:</th>
+          <th>Name:</th>
+          <th>Number:</th>
+        </tr>
+      </thead>
+      <tbody>
+					<%=@id%>
+					<%@user.lawyers.all.each do |lawyer|%>
+					<% @id=1 %>
+        <tr>
+          <td><%= lawyer.id %></td>
+          <td><%=lawyer.name%></td>
+				<%	if lawyer.number = "" %>
+					<td>Not Found </td>
+				<%	else %>
+					<td><%=lawyer.number%> </td>
+					<%end%>
+          <td><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></td>
+        </tr>
+				<% @id += 1 %>
+					<%end%>
+            <tr>
+          <td>2</td>
+          <td>JAmes Medows</td>
+          <td>718-484-4589</td>
+      <td><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></td>
+
+        </tr>
+            <tr>
+          <td>2</td>
+          <td>JAmes Medows</td>
+          <td>718-484-4589</td>
+      <td><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></td>
+
+        </tr>
+            <tr>
+          <td>2</td>
+          <td>JAmes Medows</td>
+          <td>718-484-4589</td>
+      <td><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></td>
+
+        </tr>
+            <tr>
+          <td>2</td>
+          <td>JAmes Medows</td>
+          <td>718-484-4589</td>
+      <td><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></td>
+
+        </tr>
+            <tr>
+          <td>2</td>
+          <td>JAmes Medows</td>
+          <td>718-484-4589</td>
+      <td><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></td>
+
+        </tr>
+        <tr>
+      </tbody>
+    </table>
+
+
+
+
+</div>
+
+
+
+
+
+
+        </div>
+        <!-- /.row -->
+<style>
+.form-wrapper{border:1px solid red;
+        padding: 3em;}
+        .red {
+          border: 1px solid red;
+          padding: 2em;
+        }
+        .my-lawyers{
+          border: 1px solid gray;
+          height:20em;
+          overflow: scroll;
+        }
+				.my-lawyers td {
+					cursor: pointer;
+				}
+</style>
