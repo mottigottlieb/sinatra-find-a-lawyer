@@ -4,3 +4,73 @@
 or
 <h3>Log in</h3>
 <a href="/login">Login</a>
+
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h1>Welcome to Find A Lawyer</h1>
+            <div class="form-wrapper">
+
+
+                    <form  class="form-horizontal" action="/login" method="POST">
+              <fieldset>
+                 <!-- Text input-->
+                 <div class="form-group">
+                    <label class="col-md-4 control-label" for="username">Username:</label>
+                    <div class="col-md-4">
+                       <input id="username" name="username" type="text" placeholder="" class="form-control input-md" required="">
+                    </div>
+                 </div>
+                 <!-- Password input-->
+                 <div class="form-group">
+                    <label class="col-md-4 control-label" for="password">Password:</label>
+                    <div class="col-md-4">
+                       <input id="password" name="password" type="password" placeholder="" class="form-control input-md" required="">
+                    </div>
+                 </div>
+                 <!-- Button (Double) -->
+                    <div class="col-md-12">
+                       <input type="submit" id="button1id" class="btn btn-inverse" />
+
+                       <span class="white-a">OR</span>
+                       <a class=".h-btn" href="/signup" id="register" name="register" class="btn btn-inverse">Sign Up</a>
+                 </div>
+              </fieldset>
+           </form>
+
+            </div>
+        </div>
+
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+<style>
+  form a{
+    .btn {
+      display: inline-block;
+      padding: 6px 12px;
+      margin-bottom: 0;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.42857143;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      background-image: none;
+      border: 1px solid transparent;
+      border-radius: 4px;
+    background: #dddddd;
+  }
+</style>

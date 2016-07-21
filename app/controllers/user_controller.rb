@@ -42,8 +42,9 @@ post "/login" do
   if user &&  user.authenticate(params[:password])
       # set session
       session[:user_id] = user.id
-      #redirect to dashboard
+      #redirect to dashboard 
       redirect "#{user.username}/dashboard"
+
     else
       "We couldn't find you :("
     end
