@@ -10,7 +10,13 @@ end
 
 
 get "/:username/dashboard" do
-  erb :"users/dashboard"
+   if logged_in?
+     erb :"users/dashboard"
+   else
+     "You have to be logged in"
+   end
+
+
 end
 
 
