@@ -7,4 +7,5 @@ class CreateLawyers < ActiveRecord::Migration
      t.integer "years"
      t.string  "number"
   end
+  end
 end
