@@ -9,6 +9,10 @@ get "/login" do
 end
 
 
+get "/:username/dashboard" do
+  erb :"users/dashboard"
+end
+
 
 ######## Post requests
 
@@ -18,7 +22,7 @@ post "/signup" do
   if user.save
     #set session to this user
     session[:user_id] = user.id
-    "saved"
+    redirect "#{user.username}/dashboard"
   else
     "not saved"
   end
