@@ -18,6 +18,7 @@ class ApplicationController < Sinatra::Base
   "session cleared"
 end
 
+###### post requests 
 
   #helper for sign in
     helpers do
