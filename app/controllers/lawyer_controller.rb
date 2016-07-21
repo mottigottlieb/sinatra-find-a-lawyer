@@ -1,0 +1,3 @@
+class LawyerController < ApplicationController
+
+end
