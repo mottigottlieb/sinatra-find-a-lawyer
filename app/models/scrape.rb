@@ -16,7 +16,7 @@ class Scrape
           l_number = info.search("span.hidden-xs").text
           l_time = time.year-l_years
 
-          law = Lawyer.create(name: l_name, practice: l_practice, rating: l_rating, years: l_years, number: l_number)
+          law = Lawyer.create(name: l_name, practice: l_practice, rating: l_rating, years: l_time, number: l_number)
           law.save
         end
   end
