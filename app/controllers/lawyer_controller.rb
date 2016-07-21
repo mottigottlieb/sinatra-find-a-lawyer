@@ -10,13 +10,15 @@ class LawyerController < ApplicationController
   end
 
   post "/lawyer_search" do
-    "Searching..."
-  end
-  get '/search_for_a_lawyer' do
+    #grab location
+    @location = params[:location]
+    # grab issue
+    @legal = params[:legal]
     @new_scrape = Scrape.new
-    @new_scrape.scrape_page("https://www.avvo.com/search/lawyer_search?utf8=%E2%9C%93&q=traffic&loc=11225&button=")
-    "hello"
+    @new_scrape.scrape_page("https://www.avvo.com/search/lawyer_search?utf8=%E2%9C%93&q=#{@legal}&loc=#{@location}&button=")
+    binding.pry
   end
+ 
 
 
 end
