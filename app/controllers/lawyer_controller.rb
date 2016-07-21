@@ -15,10 +15,21 @@ class LawyerController < ApplicationController
     # grab issue
     @legal = params[:legal]
     @new_scrape = Scrape.new
-    @new_scrape.scrape_page("https://www.avvo.com/search/lawyer_search?utf8=%E2%9C%93&q=#{@legal}&loc=#{@location}&button=")
-    binding.pry
+    @get = @new_scrape.scrape_page("https://www.avvo.com/search/lawyer_search?utf8=%E2%9C%93&q=#{@legal}&loc=#{@location}&button=")
+    @amount = @get.size
+    @amount_to_params = params[:amount] = @get.size
+
+    redirect "/lawyer_results?amount=#{@amount}"
   end
- 
+
+  get "/lawyer_results" do
+    @total = params[:amount]
+
+    @amt = @total.to_i
+    @show = Lawyer.all.last(@amt.to_i)
+    # binding.pry
+    erb :"lawyers/lawyer_results"
+  end
 
 
 end
