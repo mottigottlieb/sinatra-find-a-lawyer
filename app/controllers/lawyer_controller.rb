@@ -59,6 +59,11 @@ class LawyerController < ApplicationController
       # "se #{@find.name}, id #{@find.id}:::user #{@user.lawyers.map {|a| a.name}} f "
     end
 
+    get "/lawyer/:id" do
+      # send this lawyer params
+      "hello"
+    end
+
 
 
 end

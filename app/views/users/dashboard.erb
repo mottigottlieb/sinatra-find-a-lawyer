@@ -25,7 +25,9 @@
             <div class="col-lg-4 jumbotron">
 
                     <form method="post" action="/lawyer_search">
+														<h4>Find a Lawyer</h4>
                   <fieldset class="form-group">
+
                     <label for="legal">Legal Issue:</label>
                     <input type="text" class="form-control" id="legal" name="legal" placeholder="eg: Bankruptcy">
                   </fieldset>
@@ -62,7 +64,7 @@
 				<%	else %>
 					<td><%=lawyer.number%> </td>
 					<%end%>
-          <td><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></td>
+          <td><a href="/lawyer/<%=lawyer.id%>"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a></td>
         </tr>
 				<% @id += 1 %>
 					<%end%>
@@ -70,7 +72,6 @@
 
       </tbody>
     </table>
-
 
 
 
