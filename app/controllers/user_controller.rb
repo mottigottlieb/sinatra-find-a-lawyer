@@ -11,6 +11,8 @@ end
 
 get "/:username/dashboard" do
   @user = User.find_by_id(session[:user_id])
+  @display_id = 1
+  @modal_id = 1
    if logged_in?
      erb :"users/dashboard"
    else

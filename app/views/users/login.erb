@@ -64,17 +64,17 @@
                   <div class="panel panel-default">
                      <div class="panel-heading">
                         <i class="fa fa-sign-in fa-lg"></i>&nbsp;
-                        Signup
+                        Login
                      </div>
                      <div class="panel-body">
-                        <form>
+                        <form action="/login" method="POST">
                            <div class="form-group">
-                              <label for="exampleInputEmail1">Username</label>
-                              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="eg: Mark123">
+                              <label for="username">Username</label>
+                              <input type="text" class="form-control" id="username" name="username" placeholder="eg: Mark123">
                            </div>
                            <div class="form-group">
-                              <label for="exampleInputPassword1">Password</label>
-                              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="************">
+                              <label for="password">Password</label>
+                              <input type="password" class="form-control" id="password" name="password" placeholder="************">
                            </div>
                            <button type="submit" class="btn btn-default pull-right">   <i class="fa fa-sign-in"></i>&nbsp;
                            Login</button>
@@ -87,8 +87,8 @@
                      <div class="panel-heading">  </div>
                      <div class="panel-body">
                         <h3>Don't have an account?</h3>
-                        <button type="button" class="btn-default btn ">   <i class="fa fa-sign-in"></i>&nbsp;
-                        Signup</button>
+                        <a href="/signup"><button type="button" class="btn-default btn "> <i class="fa fa-sign-in"></i>&nbsp;
+                        Signup</button></a>
                      </div>
                      <div class="panel-footer"></div>
                   </div>
