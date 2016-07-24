@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta name="description" content="">
+     <meta name="author" content="">
+     <title>Find a Lawyer</title>
+         <!-- Latest compiled and minified CSS -->
+     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+     <link rel="stylesheet" href="/stylesheets/main.css" />
+    <script src="https://use.fontawesome.com/7ef75f2b2e.js"></script>
+     <!-- jQuery library -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+     <!-- Latest compiled JavaScript -->
+     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+           <!-- Custom Fonts -->
+     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+     <!--[if lt IE 9]>
+     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+     <![endif]-->
+  </head>
+  <body>
+     <div id="wrap">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+           <div class="container topnav">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                 <span class="sr-only">Toggle navigation</span>
+                 <span class="icon-bar"></span>
+                 <span class="icon-bar"></span>
+                 <span class="icon-bar"></span>
+                 </button>
+                 <a class="navbar-brand topnav" href="/">Find A Lawyer</a>
+              </div>
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                 <ul class="nav navbar-nav navbar-right">
+                    <li>
+                       <a href="/user/dashboard">My Dashboard</a>
+                    </li>
+                 </ul>
+              </div>
+              <!-- /.navbar-collapse -->
+           </div>
+           <!-- /.container -->
+        </nav>
+        <!-- Header -->
+        <a name="about"></a>
+        <div class="intro-header">
+           <div class="container">
+              <div class="row">
+                 <div class="col-lg-12">
+                    <div class="intro-message">
+                       <h1>Search for a Lawyer</h1>
+                       <h3> </h3>
+                       <div class="col-lg-12">
+                          <div>
+                             <form class="form-horizontal col-lg-8 col-lg-push-2" action="/lawyer_search" method="POST">
+                                <!-- Text input-->
+                                <div class="form-group">
+                                   <label class="col-md-4 control-label" for="legal">Legal Issue:</label>
+                                   <div class="col-md-4">
+                                      <input id="legal" name="legal" type="text" placeholder="eg: Bankruptcy" class="form-control input-md" required="">
+                                   </div>
+                                </div>
+                                <!-- Text input-->
+                                <div class="form-group">
+                                   <label class="col-md-4 control-label" for="location">Location:</label>
+                                   <div class="col-md-4">
+                                      <input id="location" name="location" type="text" placeholder="City, State, Zip" class="form-control input-md">
+                                   </div>
+                                </div>
+                                <!-- Button -->
+                                <div class="form-group">
+                                   <div class="col-md-4 col-md-push-5">
+                                      <button id="singlebutton" name="singlebutton" class="btn btn-default"><i class="fa fa-search"></i> Search</button>
+                                   </div>
+                                </div>
+                             </form>
+                          </div>
+                       </div>
+                       <hr class="intro-divider">
+                       <ul class="list-inline intro-social-buttons">
+                          <li>
+                             <a href="/login" class="btn btn-default  "><i class="fa fa-sign-in"></i> <span class="network-name">Log In</span></a>
+                          </li>
+                          <li>
+                             </i> <span class="network-name">OR</span>
+                          </li>
+                          <li>
+                             <a href="/signup" class="btn btn-default  "><i class="fa fa-sign-in"></i> <span class="network-name">Sign Up</span></a>
+                          </li>
+                       </ul>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           <!-- /.container -->
+        </div>
+        <!-- /.intro-header -->
+        <!-- Page Content -->
+        <footer>
+           <div>
+              <br>
+              <br>
+           </div>
+        </footer>
+     </div>
+  </body>
+</html>

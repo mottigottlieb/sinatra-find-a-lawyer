@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>Find a Lawyer</title>
+      <!-- Bootstrap Core CSS -->
+
+
+      <script src="https://use.fontawesome.com/7ef75f2b2e.js"></script>
+      <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+      <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+   </head>
+   <body>
+      <!-- Navigation -->
+      <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+         <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <a class="navbar-brand topnav" href="/">Find A Lawyer</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+               <ul class="nav navbar-nav navbar-right">
+                  <li>
+                     <a href="/user/dashboard">My Dashboard</a>
+                  </li>
+               </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+         </div>
+         <!-- /.container -->
+      </nav>
+      <div class="container">
+         <div class="row">
+            <div class="col-sm-10 col-sm-push-1">
+               <div class="well well-sm text-center">
+                  We have found <%=@show.size%> Lawyers matching <%=@legal%> in <%= @location%> Area
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+              <% @show.each do |a| %>
+
+               <div class="col-md-6">
+                  <div class="panel panel-default profile-panel">
+                     <div class="panel-body">
+                        <div class="row">
+                           <div class="col-sm-9 col-xs-12 user-info-box">
+
+                              <h3 class="user-name">
+                                   <%= a[:name] %>
+                              </h3>
+                              <p><strong>Practice: <span class="user-dept"><%= a[:practice] %></span></strong></p>
+                              <div class="row">
+                                 <div class="col-md- col-sm-6 col-xs-12">
+                                    <p><strong><i class="fa fa-phone-square"></i> Phone: </strong><span class="user-phone"><%= a[:number] %></span></p>
+                                    <p><strong><i class="fa fa-certificate"></i> Years Licensed: </strong><span class="user-admission-year"><%= a[:years] %></span></p>
+                                 </div>
+                                 <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <p><strong><i class="fa fa-star"></i> Avvo Rating: </strong><span class="user-course"><%= a[:rating] %></span></p>
+                                 </div>
+                                 <% if logged_in? %>
+                                 <form method="post" action="/save">
+                                   <input type="hidden" name="law"  value="<%=a[:id]%>">
+                                     <button type="submit" class="btn btn-default" value="Save"><i class="fa fa-floppy-o"></i> Save this lawyer</button>
+                                  </form>
+                                  <%else%>
+                                  <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
+                                    Login to save
+                                  </button>                                  <%end%>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+          <%end%>
+            </div>
+         </div>
+      </div>
+
+
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Login</h4>
+            </div>
+            <div class="modal-body">
+              <form action="/login_results" method="POST">
+                           <div class="form-group">
+                              <label for="username">Username</label>
+                              <input type="text" class="form-control" id="username" name="username" placeholder="eg: Mark123">
+                           </div>
+                           <div class="form-group">
+                              <label for="password">Password</label>
+                              <input type="password" class="form-control" id="password" name="password" placeholder="************">
+                           </div>
+                           <button type="submit" class="btn btn-default pull-right">   <i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;
+                           Login</button>
+                        </form>
+            </div>
+            <div class="modal-footer">
+              <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer>
+      </footer>
+      <style type="text/css">
+      /*!
+ * Start Bootstrap - Landing Page Bootstrap Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+/*added*/
+.panel-body {
+    padding: 15px;
+    min-height: 16em;
+}
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+}
+
+.topnav {
+    font-size: 14px;
+}
+
+.lead {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.intro-header {
+    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url(../img/intro-bg.jpg) no-repeat center center;
+    background-size: cover;
+}
+
+.intro-message {
+    position: relative;
+    padding-top: 20%;
+    padding-bottom: 20%;
+}
+
+.intro-message > h1 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 5em;
+}
+
+.intro-divider {
+    width: 400px;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.intro-message > h3 {
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+
+@media(max-width:767px) {
+    .intro-message {
+        padding-bottom: 15%;
+    }
+
+    .intro-message > h1 {
+        font-size: 3em;
+    }
+
+    ul.intro-social-buttons > li {
+        display: block;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    ul.intro-social-buttons > li:last-child {
+        margin-bottom: 0;
+    }
+
+    .intro-divider {
+        width: 100%;
+    }
+}
+
+.network-name {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.content-section-a {
+    padding: 50px 0;
+    background-color: #f8f8f8;
+}
+
+.content-section-b {
+    padding: 50px 0;
+    border-top: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.section-heading {
+    margin-bottom: 30px;
+}
+
+.section-heading-spacer {
+    float: left;
+    width: 200px;
+    border-top: 3px solid #e7e7e7;
+}
+
+.banner {
+    padding: 100px 0;
+    color: #f8f8f8;
+    background: url(../img/banner-bg.jpg) no-repeat center center;
+    background-size: cover;
+}
+
+.banner h2 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 3em;
+}
+
+.banner ul {
+    margin-bottom: 0;
+}
+
+.banner-social-buttons {
+    float: right;
+    margin-top: 0;
+}
+
+@media(max-width:1199px) {
+    ul.banner-social-buttons {
+        float: left;
+        margin-top: 15px;
+    }
+}
+
+@media(max-width:767px) {
+    .banner h2 {
+        margin: 0;
+        text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+        font-size: 3em;
+    }
+
+    ul.banner-social-buttons > li {
+        display: block;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    ul.banner-social-buttons > li:last-child {
+        margin-bottom: 0;
+    }
+}
+
+footer {
+    background-color: #f8f8f8;
+}
+
+p.copyright {
+    margin: 15px 0 0;
+}
+
+/******* bootsnip *********/
+
+     /* Global styles */
+         .sign-btn{
+         margin-top:1em;
+         }
+         .red{
+         border:1px solid red;
+         }
+         @import url('http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
+         @import url('http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic');
+         body,
+         html {
+         width: 100%;
+         height: 100%;
+         font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+         font-weight: 400;
+         }
+         h1,
+         h2,
+         h3,
+         h4,
+         h5,
+         h6,
+         th,
+         b,
+         strong {
+         font-weight: 700;
+         }
+         .lead,
+         .panel-heading {
+         font-size: 16px;
+         font-weight: 400;
+         }
+         /* Colorgraph styles */
+         .colorgraph {
+         height: 5px;
+         border-top: 0;
+         background: #c4e17f;
+         border-radius: 5px;
+         background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+         background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+         background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+         background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+         }
+         .colorgraph-header {
+         position: absolute;
+         top: 0;
+         margin: 0;
+         width: 100%;
+         height: 3px;
+         z-index: 100;
+         }
+         /* Page styles */
+         body {
+         padding-top: 70px;
+         background: url('http://www.stripegenerator.com/generators/generate_stripes.php?fore=f8f8f8&h=30&w=20&p=20&back1=fcfcfcfdfd&back2=dddddd&gt=0&d=0&shadow=0') repeat;
+         background-attachment: fixed;
+         }
+         .profile-panel, .academic-panel, .achievements-panel, .projects-panel {
+         }
+         .user-image {
+         border: 8px solid #eee;
+         }
+         .user-info-box {
+         padding-left: 30px;
+         }
+         /* Carousel */
+         .sidebar-slider.carousel .carousel-indicators {
+         bottom: 0;
+         margin-bottom: 0;
+         }
+         .sidebar-slider.carousel .item {
+         padding-bottom: 20px;
+         }
+         .sidebar-slider.carousel .carousel-indicators > li {
+         background-color: #bbb;
+         border: none;
+         }
+         .sidebar-slider.carousel .carousel-indicators > li.active {
+         background-color: #666;
+         }
+         /* Media queries */
+         @media (max-width:480px) {
+         .btn-edit {
+         margin-top: 8px;
+         }
+         .user-info-box {
+         padding-left: 15px;
+         }
+         }
+         .well {
+         min-height: 20px;
+         padding: 10px;
+         margin-bottom: 20px;
+         background-color: #ffffff;
+         font-size: 110%;
+         border: 1px solid #e3e3e3;
+         border-radius: 4px;
+         -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+         box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+         }
+      </style>
+   </body>
+</html>
