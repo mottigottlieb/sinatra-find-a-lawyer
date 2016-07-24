@@ -27,7 +27,7 @@ end
 
 post "/signup" do
   # Create new user
-  user = User.create(:username => params[:username], :password => params[:password])
+  user = User.create(:username => params[:username], :password => params[:password], :email => params[:email], :first_name => params[:first_name], :last_name => params[:last_name])
   if user.save
     #set session to this user
     session[:user_id] = user.id
