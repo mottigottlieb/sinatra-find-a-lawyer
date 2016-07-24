@@ -19,12 +19,13 @@ class LawyerController < ApplicationController
     @amount = @get.size
     @amount_to_params = params[:amount] = @get.size
 
-    redirect "/lawyer_results?amount=#{@amount}"
+    redirect "/lawyer_results?amount=#{@amount}&legal=#{@legal}&location=#{@location}"
   end
 
   get "/lawyer_results" do
     @total = params[:amount]
-
+    @location = params[:location]
+    @legal = params[:legal]
     @amt = @total.to_i
     @show = Lawyer.all.last(@amt.to_i)
     # binding.pry
@@ -34,8 +35,9 @@ class LawyerController < ApplicationController
 
   post "/save" do
 
-    @lawyer_id = params[:law].to_i
-    redirect "/relate?selected_lawyer_id=#{@lawyer_id}"
+      @lawyer_id = params[:law].to_i
+      redirect "/relate?selected_lawyer_id=#{@lawyer_id}"
+
 
 
     # lawyer = Lawyer.find_by(@lawyer_id)
@@ -44,9 +46,6 @@ class LawyerController < ApplicationController
     #   "e"
   end
 
-    get "/remove_lawyer" do
-
-    end
     get "/relate" do
       "selected lawyer id"
       @selected = params[:selected_lawyer_id].to_i
@@ -54,9 +53,9 @@ class LawyerController < ApplicationController
       @user = User.find_by_id(session[:user_id])
 
     if   @user.lawyers << @find
-      "saved "
+      redirect "#{@user.username}/dashboard"
     else
-      "not"
+      "There was an issue Saving the Lawyer"
     end
 
       # "se #{@find.name}, id #{@find.id}:::user #{@user.lawyers.map {|a| a.name}} f "
@@ -74,17 +73,34 @@ class LawyerController < ApplicationController
 
 
     post "/remove_lawyer" do
-        @lawyer_id = params[:id].to_i
-        redirect "/remove_lawyer?id=#{@lawyer_id}"
-
+          @user = User.find_by_id(session[:user_id])
+            @user.lawyers.all.find(params[:id].to_i).delete
+            redirect "#{@user.username}/dashboard"
     end
 
-    get "/remove_lawyer" do
-      l_id = params[:lawyer_id].to_i
-      @user = User.find_by_id(session[:user_id])
-      user_lawyers = @user.lawyers.all
-      binding.pry
-      user_lawyers.find_by(id: l_id).delete
+
+    post "/login_results" do
+      #find user in db
+      user = User.find_by(:username => params[:username])
+      # if exists and can auth password
+      if user &&  user.authenticate(params[:password])
+          # set session
+          session[:user_id] = user.id
+          #redirect to dashboard
+          #grab location
+          @location = params[:location]
+          # grab issue
+          @legal = params[:legal]
+          @new_scrape = Scrape.new
+          @get = @new_scrape.scrape_page("https://www.avvo.com/search/lawyer_search?utf8=%E2%9C%93&q=#{@legal}&loc=#{@location}&button=")
+          @amount = @get.size
+          @amount_to_params = params[:amount] = @get.size
+
+          redirect "/lawyer_results?amount=#{@amount}"
+        else
+          redirect "/"
+        end
+
     end
 
 end

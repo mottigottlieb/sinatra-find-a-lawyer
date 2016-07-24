@@ -13,12 +13,9 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 
-  get '/logout' do
-    session.clear
-  "session cleared"
-end
 
-###### post requests 
+
+###### post requests
 
   #helper for sign in
     helpers do

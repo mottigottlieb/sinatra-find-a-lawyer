@@ -46,12 +46,6 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                <ul class="nav navbar-nav navbar-right">
                   <li>
-                     <a href="#about">Log In</a>
-                  </li>
-                  <li>
-                     <a href="#about">Sign Up</a>
-                  </li>
-                  <li>
                      <a href="#services">My Dashboard</a>
                   </li>
                </ul>
@@ -92,10 +86,15 @@
                                  <div class="col-md-6 col-sm-6 col-xs-12">
                                     <p><strong><i class="fa fa-star"></i> Avvo Rating: </strong><span class="user-course"><%= a[:rating] %></span></p>
                                  </div>
+                                 <% if logged_in? %>
                                  <form method="post" action="/save">
                                    <input type="hidden" name="law"  value="<%=a[:id]%>">
                                      <button type="submit" class="btn btn-default" value="Save"><i class="fa fa-floppy-o"></i> Save this lawyer</button>
                                   </form>
+                                  <%else%>
+                                  <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
+                                    Login to save
+                                  </button>                                  <%end%>
                               </div>
                            </div>
                         </div>
@@ -107,6 +106,36 @@
          </div>
       </div>
 
+
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Login</h4>
+            </div>
+            <div class="modal-body">
+              <form action="/login_results" method="POST">
+                           <div class="form-group">
+                              <label for="username">Username</label>
+                              <input type="text" class="form-control" id="username" name="username" placeholder="eg: Mark123">
+                           </div>
+                           <div class="form-group">
+                              <label for="password">Password</label>
+                              <input type="password" class="form-control" id="password" name="password" placeholder="************">
+                           </div>
+                           <button type="submit" class="btn btn-default pull-right">   <i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;
+                           Login</button>
+                        </form>
+            </div>
+            <div class="modal-footer">
+              <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
       <footer>
       </footer>
       <style type="text/css">
@@ -118,7 +147,7 @@
 /*added*/
 .panel-body {
     padding: 15px;
-    min-height: 15em;
+    min-height: 16em;
 }
 body,
 html {

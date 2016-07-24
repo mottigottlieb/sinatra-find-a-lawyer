@@ -16,7 +16,7 @@ get "/:username/dashboard" do
    if logged_in?
      erb :"users/dashboard"
    else
-     "You have to be logged in"
+     redirect "/"
    end
 
 
@@ -53,4 +53,13 @@ post "/login" do
 
 end
 
+get '/logout' do
+  session.clear
+  redirect "/"
+end
+
+get '/:username/logout' do
+  session.clear
+  redirect "/logout"
+end
 end
