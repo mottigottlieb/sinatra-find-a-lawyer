@@ -44,6 +44,9 @@ class LawyerController < ApplicationController
     #   "e"
   end
 
+    get "/remove_lawyer" do
+
+    end
     get "/relate" do
       "selected lawyer id"
       @selected = params[:selected_lawyer_id].to_i
@@ -60,10 +63,28 @@ class LawyerController < ApplicationController
     end
 
     get "/lawyer/:id" do
-      # send this lawyer params
-      "hello"
+
+      l_id = params[:id].to_i
+      @find = Lawyer.find_by(id: l_id)
+
+
+      erb :"lawyers/lawyer_details"
+
     end
 
 
+    post "/remove_lawyer" do
+        @lawyer_id = params[:id].to_i
+        redirect "/remove_lawyer?id=#{@lawyer_id}"
+
+    end
+
+    get "/remove_lawyer" do
+      l_id = params[:lawyer_id].to_i
+      @user = User.find_by_id(session[:user_id])
+      user_lawyers = @user.lawyers.all
+      binding.pry
+      user_lawyers.find_by(id: l_id).delete
+    end
 
 end

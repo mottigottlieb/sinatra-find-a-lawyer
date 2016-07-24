@@ -1,0 +1,32 @@
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="jumbotron">
+        <h3><%= @find.name%></h3>
+        <ul>
+         <li>  <b>ID:</b> <%= @find.id %></li>
+           <li><b>Practice:</b> <%= @find.practice %></li>
+          <li> <b>Rating:</b> <%= @find.rating %></li>
+           <li><b>Number: </b><%= @find.number %></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-lg-12">
+      <form method="post" action="/remove_lawyer" >
+        <input type="hidden" name="lawyer_id" value="[:<%= @find.id %>]">
+        <input type="hidden" name="id" value="[:<%= @find.id %>]"> 
+
+        <input type="submit"  value="Remove <%= @find.name%>">
+      </form>
+    </div>
+  </div>
+</div>
+
+<style>
+  ul li {
+    list-style-type: none;
+  }
+</style>
