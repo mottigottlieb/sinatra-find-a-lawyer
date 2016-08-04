@@ -4,7 +4,6 @@ require 'pry'
 class Scrape
 
   def scrape_page(index_url)
-    #scrape avvo.com
     site = @doc = Nokogiri::HTML(open(index_url))
     site.search("div.lawyer-search-result").map do |info|
         time = Time.now
@@ -16,8 +15,9 @@ class Scrape
           l_number = info.search("span.hidden-xs").text
           l_time = time.year-l_years
 
-          law = Lawyer.create(name: l_name, practice: l_practice, rating: l_rating, years: l_time, number: l_number)
-          law.save
+          law = Lawyer.find_or_create_by(name: l_name, practice: l_practice, rating: l_rating, years: l_time, number: l_number)
+          # law.save
+
         end
   end
 
