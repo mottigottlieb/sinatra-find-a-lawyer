@@ -14,13 +14,23 @@ gem 'bcrypt'
 gem "tux"
 gem 'rack-flash3'
 
-group :test do
+
+group :development do
+ gem 'sqlite3'
+ gem "tux"
+end
+
+#This will allow us to use Postgres on Heroku
+group :production do
+ gem 'pg'
+end
+
+# For the testing suite
+group :test do 
+  gem 'sqlite3'
+  gem "tux"
   gem 'rspec'
   gem 'capybara'
   gem 'rack-test'
   gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
-end
-
-group :development do
-  gem 'sqlite3', '~> 1.3', '>= 1.3.11' 
 end
