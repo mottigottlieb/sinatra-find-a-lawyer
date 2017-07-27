@@ -127,6 +127,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   capybara
   database_cleaner!
+  nokogiri
   pg
   pry
   rack-flash3

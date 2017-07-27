@@ -8,6 +8,7 @@ gem "sinatra-contrib", require: false # This is for Hot Reloading
 gem 'rake'
 gem 'require_all'
 gem 'thin'
+gem 'nokogiri'
 gem 'shotgun'
 gem 'pry'
 gem 'bcrypt', '~> 3.1.7' # on windows check readme for instrucitons
