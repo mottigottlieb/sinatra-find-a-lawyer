@@ -17,7 +17,7 @@ get "/:username/dashboard" do
      erb :"users/dashboard"
    else
      redirect "/"
-   end
+   end 
 
 
 end

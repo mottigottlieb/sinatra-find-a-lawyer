@@ -15,6 +15,7 @@ class ApplicationController < Sinatra::Base
 
 
 
+ 
 ###### post requests
 
   #helper for sign in
