@@ -2,6 +2,7 @@ source 'http://rubygems.org'
  
 ruby '2.3.1'
 
+gem 'rack'
 gem 'sinatra'
 gem 'activerecord', :require => 'active_record'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'

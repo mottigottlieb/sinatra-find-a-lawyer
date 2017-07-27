@@ -55,7 +55,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    rack (1.6.4)
+    rack (1.6.8)
     rack-flash3 (1.0.5)
       rack
     rack-protection (1.5.3)
@@ -130,6 +130,7 @@ DEPENDENCIES
   nokogiri
   pg
   pry
+  rack
   rack-flash3
   rack-test
   rake
@@ -142,6 +143,9 @@ DEPENDENCIES
   sqlite3
   thin
   tux
+
+RUBY VERSION
+   ruby 2.3.1p112
 
 BUNDLED WITH
    1.12.5
