@@ -1,1 +1,1 @@
-web: gunicorn app:app --log-file=-
+web: bundle exec rackup config.ru -p $PORT
