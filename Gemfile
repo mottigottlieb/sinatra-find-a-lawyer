@@ -1,19 +1,17 @@
 source 'http://rubygems.org'
  
+
 gem 'sinatra'
-gem 'activerecord', '~> 4.2', '>= 4.2.6', :require => 'active_record'
+gem 'activerecord', :require => 'active_record'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
+gem "sinatra-contrib", require: false # This is for Hot Reloading
 gem 'rake'
-gem 'require_all' 
-gem 'pg'
+gem 'require_all'
 gem 'thin'
 gem 'shotgun'
-gem 'nokogiri'
 gem 'pry'
-gem 'bcrypt'
-gem "tux"
+gem 'bcrypt', '~> 3.1.7' # on windows check readme for instrucitons
 gem 'rack-flash3'
-
 
 group :development do
  gem 'sqlite3'
