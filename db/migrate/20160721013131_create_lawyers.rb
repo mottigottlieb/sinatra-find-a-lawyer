@@ -1,4 +1,7 @@
 class CreateLawyers < ActiveRecord::Migration
+
+    validates :name, presence: true
+
   def change
     create_table :lawyers do |t|
      t.string  "name"
